@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawer_layout_slave"
+    android:background="#2C2C2C"
+    android:fitsSystemWindows="true"
+    tools:context=".SlaveMain"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/nav_header_radius"
+            android:id="@+id/toolbar_slave"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:elevation="15dp">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="45dp"
+                android:src="@drawable/moss_logo" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fragment_container_slave">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please choose an option:"
+                android:textColor="#CAC9C9"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <!--Relative layout for fire detection button-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/textfield_radius"
+                android:layout_below="@+id/textView"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="5dp"
+                android:elevation="15dp"
+                android:id="@+id/fireButton"
+                android:weightSum="10"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:id="@+id/fireText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="FIRE DETECTION"
+                    android:layout_weight="7"
+                    android:layout_marginLeft="7dp"
+                    android:textColor="#2C2C2C"
+                    android:textStyle="bold"
+                    android:textSize="40sp"
+                    android:textAlignment="center"
+                    android:fontFamily="sans-serif-condensed-medium"/>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="110dp"
+                    android:layout_weight="3"
+                    android:layout_marginRight="7dp"
+                    android:id="@+id/fireImage"
+                    android:src="@drawable/fire2"/>
+
+            </LinearLayout>
+
+            <!--Relative layout for intrusion detection button-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/textfield_radius"
+                android:layout_below="@+id/fireButton"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="5dp"
+                android:elevation="15dp"
+                android:id="@+id/IntrusionButton"
+                android:weightSum="10"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:id="@+id/IntrusionText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="INTRUSION DETECTION"
+                    android:layout_weight="7"
+                    android:layout_marginLeft="7dp"
+                    android:textColor="#2C2C2C"
+                    android:textStyle="bold"
+                    android:textSize="40sp"
+                    android:textAlignment="center"
+                    android:fontFamily="sans-serif-condensed-medium"/>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="165dp"
+                    android:layout_weight="3"
+                    android:layout_marginRight="7dp"
+                    android:id="@+id/intrusionImage"
+                    android:src="@drawable/instrusion1"/>
+
+            </LinearLayout> <!--Relative layout for intrusion detection ends here-->
+
+            <Button
+                android:id="@+id/Slave_LogOut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="60dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:gravity="center"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/logout_button_radius"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="#ffffff"
+                android:text="LOG OUT" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#3d3d3d"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:id="@+id/nav_view_slave"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu_slave"
+        />
+
+</androidx.drawerlayout.widget.DrawerLayout>

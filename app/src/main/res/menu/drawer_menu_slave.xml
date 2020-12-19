@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:id="@+id/switch_group_nav"
+        android:checkableBehavior="single">
+        <item android:id="@+id/nav_switch"
+            android:icon="@drawable/ic_switch"
+            android:title="Switch to Master" />
+
+    </group>
+
+    <group android:id="@+id/logout_group_nav"
+        android:checkableBehavior="single">
+
+        <item android:id="@+id/nav_logout_slave"
+            android:icon="@drawable/ic_exit"
+            android:title="Log Out" />
+    </group>
+</menu>

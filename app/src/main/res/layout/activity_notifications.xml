@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#171717"
+    tools:context=".Notifications"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/nav_header_radius"
+        android:id="@+id/toolbar_notifications"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:elevation="15dp">
+
+        <ImageView
+            android:id="@+id/arrowBackIcon_notifications"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:id="@+id/notifications_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Notifications"
+            android:textColor="#ffffff"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/no_notification_text"
+        android:text="No new notifications"
+        android:textColor="#dedede"
+        android:textSize="20sp"
+        android:layout_centerInParent="true"/>
+
+
+</RelativeLayout>

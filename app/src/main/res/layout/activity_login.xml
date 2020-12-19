@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#212121"
+
+    tools:context=".Login">
+
+    <Button
+        android:id="@+id/login_mast"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="160dp"
+        android:layout_marginBottom="30dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:background="@drawable/textfield_radius"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="OPEN AS MASTER"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#3b3939"
+        android:textStyle="bold"
+        android:elevation="10dp"
+         />
+
+
+    <Button
+        android:id="@+id/login_slave"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/login_mast"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="100dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/textfield_radius"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="OPEN AS SLAVE"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#3b3939"
+        android:textStyle="bold"
+        android:elevation="10dp" />
+
+
+</RelativeLayout>

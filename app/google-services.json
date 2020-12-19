@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "812705461749",
+    "project_id": "moss-5f9c8",
+    "storage_bucket": "moss-5f9c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812705461749:android:c5726582da0a58106edcbc",
+        "android_client_info": {
+          "package_name": "com.example.moss"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812705461749-8n4oium51se3t3ur45vufoohtl889ads.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.moss",
+            "certificate_hash": "9526164a7431570ebdaab2d7d931caafa4f78dec"
+          }
+        },
+        {
+          "client_id": "812705461749-gm17g6sn2ihpu2jn0ev2mpelp3n69cal.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaTb6Dy_CbOOesNbYJcKIxEA2I5NCpKC4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "812705461749-gm17g6sn2ihpu2jn0ev2mpelp3n69cal.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
