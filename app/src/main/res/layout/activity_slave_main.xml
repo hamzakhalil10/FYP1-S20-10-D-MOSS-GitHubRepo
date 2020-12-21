@@ -159,7 +159,7 @@
         android:background="#3d3d3d"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
         android:id="@+id/nav_view_slave"
-        app:headerLayout="@layout/nav_header"
+        app:headerLayout="@layout/nav_header_slave"
         app:menu="@menu/drawer_menu_slave"
         />
 

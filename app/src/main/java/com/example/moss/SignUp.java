@@ -19,6 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -70,7 +72,7 @@ public class SignUp extends AppCompatActivity {
     public void openMasterMain(){
         final String userName = name.getText().toString();
         final String email = emailId.getText().toString();
-        String pwd = password.getText().toString();
+        final String pwd = password.getText().toString();
         String cpwd = confrimPass.getText().toString();
 
         if(userName.isEmpty() &&email.isEmpty() && pwd.isEmpty() && cpwd.isEmpty()){
@@ -119,12 +121,29 @@ public class SignUp extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
                         userID = mAuth.getCurrentUser().getUid();
-                        DocumentReference documentReference = fStore.collection("users").document(userID);
-                        Map<String,Object> user = new HashMap<>();
+                        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
+                        //DocumentReference documentReference = fStore.collection("users").document(userID);
+                        Map<String,String> user = new HashMap<>();
                         user.put("Name",userName);
                         user.put("Email",email);
+                        user.put("Password",pwd);
+                        db.setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(SignUp.this,"Account created successfully!", Toast.LENGTH_SHORT).show();
+                                finish();
+                                Intent intent1 = new Intent(SignUp.this, Login.class);
+                                startActivity(intent1);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(SignUp.this, "Authentication failed. " +e.getMessage(),
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        });
                         //user.put("Password",pwd);
-                        documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        /*documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(SignUp.this,"Account created successfully!", Toast.LENGTH_SHORT).show();
@@ -138,7 +157,7 @@ public class SignUp extends AppCompatActivity {
                                 Toast.makeText(SignUp.this, "Authentication failed. " +e.getMessage(),
                                         Toast.LENGTH_SHORT).show();
                             }
-                        });
+                        });*/
 
                     } else {
                         // If sign in fails, display a message to the user.

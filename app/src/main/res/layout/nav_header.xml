@@ -9,21 +9,31 @@
     android:background="@drawable/nav_bg2"
     >
 
-
-    <de.hdodenhof.circleimageview.CircleImageView
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/profilePic"
-        android:src="@drawable/person"/>
+        android:layout_height="match_parent"
+        android:layout_marginLeft="2dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:text="My Profile"
-        android:textColor="#ffff"
-        android:id="@+id/userName_nav_header"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:id="@+id/profilePic"
+            android:src="@drawable/default_profile_pic"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="My Profile"
+            android:textColor="#ffff"
+            android:layout_below="@+id/profilePic"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/userName_nav_header"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+
+
+    </RelativeLayout>
+
 
 
 </LinearLayout>
