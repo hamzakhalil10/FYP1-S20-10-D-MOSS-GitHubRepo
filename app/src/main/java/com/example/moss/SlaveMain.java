@@ -100,7 +100,7 @@ public class SlaveMain extends AppCompatActivity implements NavigationView.OnNav
         fireButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                openActivity();
+                openActivity(savedInstanceState);
             }
         });
 
@@ -109,7 +109,7 @@ public class SlaveMain extends AppCompatActivity implements NavigationView.OnNav
         intrusionButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                openActivity();
+                openActivity(savedInstanceState);
             }
         });
 
@@ -126,9 +126,14 @@ public class SlaveMain extends AppCompatActivity implements NavigationView.OnNav
         });
     }
 
-    public void openActivity(){
-        Intent intent1 = new Intent(SlaveMain.this,CameraActivity.class);
-        startActivity(intent1);
+    public void openActivity(Bundle savedInstanceState){
+        if (null == savedInstanceState) {
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.drawer_layout_slave, CameraActivity.newInstance())
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 
     @Override

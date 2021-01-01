@@ -71,7 +71,7 @@
             android:id="@+id/changeProfilePicText"
             android:text="Change profile picture"
             android:textSize="20sp"
-            android:textColor="#268bff"
+            android:textColor="#0796de"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:layout_below="@+id/profile_picture"/>

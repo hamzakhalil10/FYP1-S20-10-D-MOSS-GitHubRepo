@@ -1,17 +1,24 @@
 package com.example.moss;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -24,6 +31,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,8 +50,6 @@ import com.squareup.picasso.Picasso;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-import javax.annotation.Nullable;
-
 public class MasterMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private DrawerLayout drawer;
@@ -53,10 +59,14 @@ public class MasterMainActivity extends AppCompatActivity implements NavigationV
     private ImageView profilePic;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
+    FirebaseDatabase RootReference;
     StorageReference storageReference;
     String userID;
     String userName_temp = " ";
     View mHeaderView;
+
+    NotificationCompat.Builder builder;
+    NotificationCompat.Builder builder2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +86,24 @@ public class MasterMainActivity extends AppCompatActivity implements NavigationV
         //get username below the toolbar
         userName = findViewById(R.id.userName);
         userID = fAuth.getCurrentUser().getUid();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("AlertNotifications", "AlertNotifications", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+
+        builder = new NotificationCompat.Builder(this, "AlertNotifications")
+                .setContentTitle("MOSS")
+                .setSmallIcon(R.drawable.moss3)
+                .setAutoCancel(true)
+                .setContentText("WARNING : A fire has been detected");
+
+        builder2 = new NotificationCompat.Builder(this, "AlertNotifications")
+                .setContentTitle("MOSS")
+                .setSmallIcon(R.drawable.moss3)
+                .setAutoCancel(true)
+                .setContentText("WARNING : An intruder has been detected");
 
         /*DocumentReference documentReference = fStore.document("users/"+userID);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
@@ -97,6 +125,7 @@ public class MasterMainActivity extends AppCompatActivity implements NavigationV
                     String name = dataSnapshot.child("Name").getValue(String.class);
                     userName.setText("Welcome "+name+"!");
                 }
+                getCasesForNotification();
             }
 
             @Override
@@ -104,7 +133,6 @@ public class MasterMainActivity extends AppCompatActivity implements NavigationV
                     userName.setText("Welcome User!");
             }
         });
-
 
         TextView textViewDate = findViewById(R.id.date);
         textViewDate.setText(currentDate);
@@ -248,6 +276,46 @@ public class MasterMainActivity extends AppCompatActivity implements NavigationV
         alertDialog.show();
     }
 
+    public void getCasesForNotification() {
+        DatabaseReference dba = FirebaseDatabase.getInstance().getReference().child("Alerts").child(userID);
+        dba.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                ClassAlert classAlert = dataSnapshot.getValue(ClassAlert.class);
+                if (classAlert.getReceived().equals("false")) {
+                    Log.d("something", "onChildAdded: " + dataSnapshot.getKey());
+                    if (classAlert.getType().equals("fire")) {
+                        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MasterMainActivity.this);
+                        managerCompat.notify(999, builder.build());
+                    }
+                    else if (classAlert.getType().equals("intruder")){
+                        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MasterMainActivity.this);
+                        managerCompat.notify(999, builder2.build());
+                    }
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

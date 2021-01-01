@@ -4,15 +4,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/rl"
+    tools:context=".CameraActivity" >
 
-    tools:context=".CameraActivity">
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/frameLayout">
-
-    </FrameLayout>
+    <com.example.moss.AutoFitTextureView
+        android:id="@+id/texture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
 
     <ImageView
         android:id="@+id/backArrow"
@@ -23,15 +23,37 @@
         android:clickable="true"
         android:src="@drawable/back_arrow" />
 
-    <ImageView
-        android:id="@+id/captureButton"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="15dp"
-        android:layout_centerHorizontal="true"
-        android:clickable="true"
+    <FrameLayout
+        android:id="@+id/control"
+        android:layout_below="@id/texture"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/capture" />
+        android:layout_alignParentStart="true"
+        android:background="#292929" >
 
+        <!--Not needed-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monitoring..."
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#ffffff"
+            />
+
+        <TextView
+            android:id="@+id/text_data"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+    </FrameLayout>
 
 </RelativeLayout>

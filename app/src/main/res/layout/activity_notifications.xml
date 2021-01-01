@@ -29,10 +29,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Notifications"
+            android:text="Alerts"
             android:textColor="#ffffff"
             android:textSize="25sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear"
+            android:textColor="#ba0000"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_gravity="right"
+            android:id="@+id/clear_alerts"
+            android:layout_marginRight="18dp"
+            />
 
 
     </androidx.appcompat.widget.Toolbar>
@@ -40,11 +52,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/no_notification_text"
-        android:text="No new notifications"
-        android:textColor="#dedede"
+        android:id="@+id/no_new_alert"
+        android:text="No new Notifications!"
         android:textSize="20sp"
-        android:layout_centerInParent="true"/>
+        android:textColor="#ededed"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_alerts"
+        android:layout_below="@+id/toolbar_notifications"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

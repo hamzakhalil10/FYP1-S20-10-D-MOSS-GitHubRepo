@@ -17,17 +17,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".Notifications"></activity>
-        <activity android:name=".SignUp" />
-        <activity android:name=".SignIn" />
-        <activity android:name=".ChangePassword" />
-        <activity android:name=".myProfile" />
-        <activity android:name=".SlaveMain" />
+        <activity android:name=".Notifications"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".SignUp"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SignIn"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ChangePassword"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".myProfile"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SlaveMain"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MasterMainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Login" />
-        <activity android:name=".CapturedImage" />
+        <activity android:name=".Login"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".CapturedImage"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".CameraActivity"
             android:screenOrientation="portrait" />
@@ -38,6 +46,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
     </application>
 
 </manifest>
